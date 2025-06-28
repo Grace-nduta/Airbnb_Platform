@@ -1,9 +1,9 @@
 // API Configuration
-export const API_BASE_URL = 'http://127.0.0.1:5555';
+import {API_BASE} from "../config.json"
 
 // Helper function for making API calls
 export const apiCall = async (endpoint, options = {}) => {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = `${API_BASE}${endpoint}`;
   
   const defaultOptions = {
     headers: {

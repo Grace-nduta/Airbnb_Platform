@@ -31,7 +31,7 @@ CORS(app, resources={
 })
 
 # Use local app.db in the server directory
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://airbnb_db_zf6o_user:XRrfBgpe7sInmOtV12qsFzw6cIeeKPRQ@dpg-d1g4bt2li9vc73a8eq8g-a.oregon-postgres.render.com/airbnb_db_zf6o'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 migrate = Migrate(app, db)
 db.init_app(app)

@@ -13,8 +13,8 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True, nullable=False)
-    email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(85), unique=True, nullable=False)
+    password = db.Column(db.String(300), nullable=False)
     role = db.Column(db.String(20), nullable=False, default='guest') # 'guest', 'host' or 'admin'
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
