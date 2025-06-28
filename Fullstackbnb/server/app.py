@@ -37,10 +37,10 @@ CORS(app, resources={
     }
 })
 
-# Database Configuration
+# Database Configuration - CORRECTED
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL', 
-    ''
+    'postgresql://bnb_db_3iuz_user:hvR9xXPeUS06q6tdhK5vAwnEga5KbnvV@dpg-d1g6v0ripnbc73ad1pqg-a.oregon-postgres.render.com/bnb_db_3iuz'
 ).replace('postgres://', 'postgresql://')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
