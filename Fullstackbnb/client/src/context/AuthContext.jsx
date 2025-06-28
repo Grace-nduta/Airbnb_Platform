@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import {API_BASE} from "../config.json"
+
+
 
 const AuthContext = createContext();
 
@@ -57,10 +60,11 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     dispatch({ type: 'LOGIN_START' });
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(credentials),
+        credentials: 'include'  // Required for cookies
       });
       
       if (!response.ok) throw new Error('Login failed');
@@ -78,10 +82,11 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     dispatch({ type: 'LOGIN_START' });
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
+        credentials: 'include'
       });
       
       if (!response.ok) throw new Error('Registration failed');
@@ -104,13 +109,14 @@ export const AuthProvider = ({ children }) => {
 
   const updateProfile = async (profileData) => {
     try {
-      const response = await fetch('/api/users/profile', {
+      const response = await fetch(`${API_BASE}/api/users/profile`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify(profileData)
+        body: JSON.stringify(profileData),
+        credentials: 'include'
       });
       
       if (!response.ok) throw new Error('Profile update failed');
@@ -123,14 +129,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // --- Delete Profile Function ---
   const deleteProfile = async () => {
     try {
-      const response = await fetch('/api/users/profile', {
+      const response = await fetch(`${API_BASE}/api/users/profile`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+        },
+        credentials: 'include'
       });
       if (!response.ok) throw new Error('Profile deletion failed');
       localStorage.removeItem('token');
