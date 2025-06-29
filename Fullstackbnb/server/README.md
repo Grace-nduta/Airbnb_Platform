@@ -28,7 +28,7 @@ This is the backend server for the AirBNB booking application.
 ## Setup
 
 1. Install dependencies:
-```bash
+```bash```
 pipenv install
 pipenv shell
 ```
@@ -40,7 +40,7 @@ flask db upgrade head
 ```
 
 3. Run the server:
-```bash
+```bash```
 python app.py
 ```
 
