@@ -232,6 +232,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Grace Kahare - [ndutak5674@gmail.com]
 
-Project Link: [https://github.com/gracekahare/Fullstackbnb](https://github.com/gracekahare/Fullstackbnb)
+Project Link: [https://github.com/Grace-nduta/Airbnb_Platform]
 
 
