@@ -20,9 +20,9 @@ import ManageListings from './Pages/ManageListings';
 import AddListingForm from './Pages/AddListingForm';
 
 // Components
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
-import BrowseListings from "../Components/BrowseListings.jsx";
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+import BrowseListings from "./Components/BrowseListings.jsx";
 import ProfileSettings from "./Pages/ProfileSettings.jsx";
 import ReviewsTab from "./Pages/ReviewsTab.jsx";
 import { AuthProvider } from './context/AuthContext.jsx';

@@ -62,7 +62,7 @@ export const ListingsProvider = ({ children }) => {
     dispatch({ type: 'FETCH_LISTINGS_START' });
     try {
       const queryParams = new URLSearchParams(filters);
-      const response = await fetch(`${API_BASE}/api/listings?${queryParams}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/listings?${queryParams}`);
       if (!response.ok) throw new Error('Failed to fetch listings');
       const data = await response.json();
       dispatch({ type: 'FETCH_LISTINGS_SUCCESS', payload: data });
@@ -75,7 +75,7 @@ export const ListingsProvider = ({ children }) => {
   const fetchHostListings = async (hostId) => {
     dispatch({ type: 'FETCH_LISTINGS_START' });
     try {
-      const response = await fetch(`${API_BASE}/api/listings/host/${hostId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/listings/host/${hostId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -92,7 +92,7 @@ export const ListingsProvider = ({ children }) => {
   // Verify a listing (admin)
   const verifyListing = async (listingId) => {
     try {
-      const response = await fetch(`${API_BASE}/api/listings/${listingId}/verify`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/listings/${listingId}/verify`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -111,7 +111,7 @@ export const ListingsProvider = ({ children }) => {
   // Create a listing
   const createListing = async (listingData) => {
     try {
-      const response = await fetch(`${API_BASE}/api/listings`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/listings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ export const ListingsProvider = ({ children }) => {
   // Update a listing
   const updateListing = async (id, listingData) => {
     try {
-      const response = await fetch(`${API_BASE}/api/listings/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/listings/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export const ListingsProvider = ({ children }) => {
   // Delete a listing
   const deleteListing = async (id) => {
     try {
-      const response = await fetch(`${API_BASE}/api/listings/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/listings/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

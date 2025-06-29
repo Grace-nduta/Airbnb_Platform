@@ -57,7 +57,7 @@ export const BookingsProvider = ({ children }) => {
   const fetchBookings = async (userId) => {
     dispatch({ type: 'FETCH_BOOKINGS_START' });
     try {
-      const response = await fetch(`${API_BASE}/api/bookings/user/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/bookings/user/${userId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -74,7 +74,7 @@ export const BookingsProvider = ({ children }) => {
   const fetchBookingsForListing = async (listingId) => {
     dispatch({ type: 'FETCH_BOOKINGS_START' });
     try {
-      const response = await fetch(`${API_BASE}/api/bookings/listing/${listingId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/listing/${listingId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -91,7 +91,7 @@ export const BookingsProvider = ({ children }) => {
   const fetchAllBookings = async (page = 1, pageSize = 20) => {
     dispatch({ type: 'FETCH_BOOKINGS_START' });
     try {
-      const response = await fetch(`${API_BASE}/api/bookings?page=${page}&pageSize=${pageSize}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/bookings?page=${page}&pageSize=${pageSize}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -107,7 +107,7 @@ export const BookingsProvider = ({ children }) => {
   // Create a booking
   const createBooking = async (bookingData) => {
     try {
-      const response = await fetch(`${API_BASE}/api/bookings`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ export const BookingsProvider = ({ children }) => {
   // Update a booking (date, guest count, etc.)
   const updateBooking = async (bookingId, updateData) => {
     try {
-      const response = await fetch(`${API_BASE}/api/bookings/${bookingId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/${bookingId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ export const BookingsProvider = ({ children }) => {
   // Cancel a booking
   const cancelBooking = async (bookingId) => {
     try {
-      const response = await fetch(`${API_BASE}/api/bookings/${bookingId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/bookings/${bookingId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ export const BookingsProvider = ({ children }) => {
   const checkAvailability = async (listingId, checkIn, checkOut) => {
     try {
       const response = await fetch(
-        `${API_BASE}/api/listings/${listingId}/availability?checkIn=${checkIn}&checkOut=${checkOut}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/listings/${listingId}/availability?checkIn=${checkIn}&checkOut=${checkOut}`
       );
       if (!response.ok) throw new Error('Failed to check availability');
       const data = await response.json();

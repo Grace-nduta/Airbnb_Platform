@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { API_BASE } from "../config.json";
 
 const FavoritesContext = createContext();
 
@@ -29,7 +28,7 @@ export const FavoritesProvider = ({ children }) => {
 
   const fetchFavorites = async (userId) => {
     try {
-      const response = await fetch(`${API_BASE}/api/favorites/user/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/favorites/user/${userId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -46,7 +45,7 @@ export const FavoritesProvider = ({ children }) => {
 
   const addToFavorites = async (listingId) => {
     try {
-      const response = await fetch(`${API_BASE}/api/favorites`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/favorites`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +66,7 @@ export const FavoritesProvider = ({ children }) => {
 
   const removeFromFavorites = async (favoriteId) => {
     try {
-      const response = await fetch(`${API_BASE}/api/favorites/${favoriteId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/favorites/${favoriteId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

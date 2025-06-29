@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Filters from '../../Components/Filters';
-import ListingCard from '../../Components/ListingCard';
+import Filters from '../Components/Filters';
+import ListingCard from '../Components/ListingCard';
 
 
 function Home() {
@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     console.log('Fetching listings from home page...');
-    fetch('http://127.0.0.1:5555/listings')
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/listings`)
       .then((res) => {
         console.log('Listings response status:', res.status);
         return res.json();

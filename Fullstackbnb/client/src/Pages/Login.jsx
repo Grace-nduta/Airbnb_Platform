@@ -16,7 +16,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://127.0.0.1:5555/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -32,7 +32,7 @@ function Login() {
         localStorage.setItem('token', data.access_token);
 
         // ✅ Fetch current user to get role
-        const userRes = await fetch('http://127.0.0.1:5555/current_user', {
+        const userRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/current_user`, {
           headers: {
             Authorization: `Bearer ${data.access_token}`,
           },

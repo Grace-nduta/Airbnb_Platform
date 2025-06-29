@@ -46,7 +46,7 @@ function HostDashboard() {
     }
 
     // Fetch host's listings
-    fetch('http://127.0.0.1:5555/host/listings', {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/host/listings`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ function HostDashboard() {
       });
 
     // Fetch host's bookings
-    fetch('http://127.0.0.1:5555/host/bookings', {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/host/bookings`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ function HostDashboard() {
       });
 
     // Fetch total earnings
-    fetch('http://127.0.0.1:5555/host/total-earnings', {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/host/total-earnings`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ function HostDashboard() {
     if (!token) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/host/bookings/${bookingId}/approve`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/bookings/${bookingId}/approve`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -142,7 +142,7 @@ function HostDashboard() {
     if (!token) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/host/bookings/${bookingId}/reject`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/bookings/${bookingId}/reject`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -173,7 +173,7 @@ function HostDashboard() {
 
     if (newListing.id) {
       // Editing existing listing
-        response = await fetch(`http://127.0.0.1:5555/host/${newListing.id}`, {
+        response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/${newListing.id}`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -183,7 +183,7 @@ function HostDashboard() {
         });
     } else {
       // Adding new listing
-        response = await fetch('http://127.0.0.1:5555/host/listings', {
+        response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/listings`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -208,7 +208,7 @@ function HostDashboard() {
         });
         
         // Refresh listings
-        const listingsResponse = await fetch('http://127.0.0.1:5555/host/listings', {
+        const listingsResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/listings`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -260,7 +260,7 @@ function HostDashboard() {
     if (!token) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/host/${listingId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/${listingId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -284,7 +284,7 @@ function HostDashboard() {
     const newStatus = listing.status === 'active' ? 'inactive' : 'active';
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/host/listings/${listingId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/listings/${listingId}/status`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

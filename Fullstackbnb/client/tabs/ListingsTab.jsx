@@ -47,7 +47,7 @@ function ListingsTab({
 
   const fetchListingReviews = async (listingId) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5555/reviews/listing/${listingId}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/reviews/listing/${listingId}`);
       if (response.ok) {
         const reviews = await response.json();
         setListingReviews(prev => ({

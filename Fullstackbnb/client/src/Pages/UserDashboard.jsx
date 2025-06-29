@@ -54,16 +54,16 @@ function UserDashboard() {
     try {
       setLoading(true);
       const [listingsRes, bookingsRes, favoritesRes, reviewsRes] = await Promise.all([
-        fetch('http://127.0.0.1:5555/listings', {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/listings`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://127.0.0.1:5555/bookings', {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/bookings`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://127.0.0.1:5555/favorites', {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/favorites`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://127.0.0.1:5555/reviews/user', {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/reviews/user`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);
@@ -113,7 +113,7 @@ function UserDashboard() {
     if (!token) return;
 
     try {
-      const reviewsRes = await fetch('http://127.0.0.1:5555/reviews/user', {
+      const reviewsRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/reviews/user`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -165,7 +165,7 @@ function UserDashboard() {
 
       console.log(`Booking calculation: ${pricePerNight}/night x ${nights} nights = $${totalPrice}`);
 
-      const response = await fetch(`http://127.0.0.1:5555/bookings`, { 
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/bookings`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -226,7 +226,7 @@ function UserDashboard() {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/bookings/${bookingId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/bookings/${bookingId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${currentToken}`,
@@ -271,7 +271,7 @@ function UserDashboard() {
     if (!token) return;
 
     try {
-      const bookingsRes = await fetch('http://127.0.0.1:5555/bookings', {
+      const bookingsRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/bookings`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -295,7 +295,7 @@ function UserDashboard() {
     try {
       if (favorites.includes(listingId)) {
         // Remove from favorites - need to find the favorite ID first
-        const favoritesResponse = await fetch('http://127.0.0.1:5555/favorites', {
+        const favoritesResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/favorites`, {
           headers: { 'Authorization': `Bearer ${currentToken}` }
         });
         
@@ -304,7 +304,7 @@ function UserDashboard() {
           const favoriteToRemove = favoritesData.find(fav => fav.listing_id === listingId);
           
           if (favoriteToRemove) {
-            const deleteResponse = await fetch(`http://127.0.0.1:5555/favorites/${favoriteToRemove.favorite_id}`, {
+            const deleteResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/${favoriteToRemove.favorite_id}`, {
               method: 'DELETE',
               headers: { 'Authorization': `Bearer ${currentToken}` }
             });
@@ -317,7 +317,7 @@ function UserDashboard() {
         }
       } else {
         // Add to favorites
-        const response = await fetch('http://127.0.0.1:5555/favorites', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/favorites`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

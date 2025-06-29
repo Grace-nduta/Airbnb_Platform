@@ -27,7 +27,7 @@ function AddListingForm({ onListingCreated }) {
       return;
     }
 
-    fetch('http://127.0.0.1:5555/host/listings', {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/host/listings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

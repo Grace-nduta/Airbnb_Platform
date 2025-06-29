@@ -65,7 +65,7 @@ function BookingForm({ listingId, pricePerNight = 100 }) {
     };
 
     try {
-      const response = await fetch('api/bookings', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

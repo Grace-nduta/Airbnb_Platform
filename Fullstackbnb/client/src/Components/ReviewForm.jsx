@@ -23,7 +23,7 @@ function ReviewForm({ onReviewSubmitted }) {
   useEffect(() => {
     const token = getToken();
     if (token) {
-      fetch('api/bookings', {
+      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/bookings`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(res => res.json())
@@ -69,7 +69,7 @@ function ReviewForm({ onReviewSubmitted }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:5555/reviews', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

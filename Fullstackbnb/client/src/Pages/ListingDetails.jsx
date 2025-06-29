@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import BookingForm from '../../Components/BookingForm';
-import ReviewForm from '../../Components/ReviewForm';
+import BookingForm from '../Components/BookingForm';
+import ReviewForm from '../Components/ReviewForm';
 import { Star, MapPin, Users, Bed, Bath, Wifi, Car, Coffee, Tv } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -20,7 +20,7 @@ function ListingDetails() {
   const fetchListingDetails = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://127.0.0.1:5555/listings/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/listings/${id}`);
       
       if (!response.ok) {
         throw new Error('Listing not found');
@@ -39,7 +39,7 @@ function ListingDetails() {
 
   const fetchListingReviews = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5555/reviews/listing/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/reviews/listing/${id}`);
       
       if (response.ok) {
         const reviewsData = await response.json();

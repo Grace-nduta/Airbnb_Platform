@@ -3,6 +3,7 @@ import {
   Users, Home, BarChart3, Shield, Eye, CheckCircle, XCircle, TrendingUp, MapPin,
   Calendar, DollarSign, UserCheck, UserX, Trash2, Search, Download, Bell, Settings
 } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 function AdminDashboard() {
   const [selectedTab, setSelectedTab] = useState('analytics');
@@ -33,7 +34,7 @@ function AdminDashboard() {
         return;
       }
 
-      const usersRes = await fetch('http://127.0.0.1:5555/admin/users', {
+      const usersRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -45,7 +46,7 @@ function AdminDashboard() {
       setUsers(Array.isArray(usersData) ? usersData : usersData.users || []);
 
       // Fetch listings
-      const listingsRes = await fetch('http://127.0.0.1:5555/admin/listings', {
+      const listingsRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/listings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -56,7 +57,7 @@ function AdminDashboard() {
       const listingsData = await listingsRes.json();
       setListings(listingsData);
       
-      const analyticsRes = await fetch('http://127.0.0.1:5555/admin/analytics', {
+      const analyticsRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/analytics`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -69,7 +70,7 @@ function AdminDashboard() {
     } catch (error) {
       console.error('Failed to fetch data:', error);
       if (error.message.includes('401') || error.message.includes('403')) {
-        alert('Session expired. Please log in again.');
+        toast.error('Session expired. Please log in again.');
         // Optionally redirect to login
         // window.location.href = '/login';
       }
@@ -78,7 +79,7 @@ function AdminDashboard() {
 
   const updateUserRole = async (userId, newRole) => {
     try {
-      await fetch(`http://127.0.0.1:5555/admin/users/${userId}/role`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/users/${userId}/role`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -88,9 +89,9 @@ function AdminDashboard() {
       });
       
       setUsers(users.map(u => u.id === userId ? { ...u, role: newRole } : u));
-      alert(`User role changed to ${newRole}`);
+      toast.success(`User role changed to ${newRole}`);
     } catch (error) {
-      alert('Failed to change user role');
+      toast.error('Failed to change user role');
     }
   };
 
@@ -99,7 +100,7 @@ function AdminDashboard() {
     const newStatus = user.status === 'Active' ? 'Suspended' : 'Active';
     
     try {
-      await fetch(`http://127.0.0.1:5555/users/${userId}/status`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${userId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -109,15 +110,15 @@ function AdminDashboard() {
       });
       
       setUsers(users.map(u => u.id === userId ? { ...u, status: newStatus } : u));
-      alert(`User ${newStatus.toLowerCase()} successfully`);
+      toast.success(`User ${newStatus.toLowerCase()} successfully`);
     } catch (error) {
-      alert('Failed to update user status');
+      toast.error('Failed to update user status');
     }
   };
 
   const updateListingStatus = async (listingId, status) => {
     try {
-      await fetch(`http://127.0.0.1:5555/admin/listings/${listingId}/status`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/listings/${listingId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -127,9 +128,9 @@ function AdminDashboard() {
       });
       
       setListings(listings.map(l => l.id === listingId ? { ...l, status } : l));
-      alert(`Listing ${status} successfully`);
+      toast.success(`Listing ${status} successfully`);
     } catch (error) {
-      alert('Failed to update listing status');
+      toast.error('Failed to update listing status');
     }
   };
 
@@ -137,15 +138,15 @@ function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this listing?')) return;
     
     try {
-      await fetch(`http://127.0.0.1:5555/admin/listings/${listingId}`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/listings/${listingId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
       
       setListings(listings.filter(l => l.id !== listingId));
-      alert('Listing deleted successfully');
+      toast.success('Listing deleted successfully');
     } catch (error) {
-      alert('Failed to delete listing');
+      toast.error('Failed to delete listing');
     }
   };
 

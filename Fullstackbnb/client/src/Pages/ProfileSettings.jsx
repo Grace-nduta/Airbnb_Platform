@@ -12,7 +12,7 @@ function ProfileSettings() {
   const [hasFetched, setHasFetched] = useState(false); 
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5555/current_user', {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/current_user`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -48,7 +48,7 @@ function ProfileSettings() {
       return;
     }
 
-    fetch(`http://127.0.0.1:5555/users/${user.id}`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${user.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

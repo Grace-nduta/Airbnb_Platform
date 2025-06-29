@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Star, RefreshCw } from "lucide-react";
-import ReviewForm from '../../Components/ReviewForm';
+import ReviewForm from '../Components/ReviewForm';
 
 function ReviewsTab({ reviews = [], onRefreshReviews }) {
   const [isRefreshing, setIsRefreshing] = useState(false);

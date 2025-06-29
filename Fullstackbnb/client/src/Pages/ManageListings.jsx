@@ -19,7 +19,7 @@ function ListingsDisplay() {
 
   const fetchListings = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:5555/listings');
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/listings`);
       const data = await res.json();
       setListings(data);
       toast.success('Listings loaded successfully');
@@ -36,7 +36,7 @@ function ListingsDisplay() {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:5555/host/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -89,7 +89,7 @@ function ListingsDisplay() {
         amenities: amenitiesArray
       };
       
-      const res = await fetch(`http://127.0.0.1:5555/host/${editingListing.id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/host/${editingListing.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

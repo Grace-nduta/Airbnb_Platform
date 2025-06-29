@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
 const AdminContext = createContext();
-import {API_BASE} from "../config.json"
 
 const adminReducer = (state, action) => {
   switch (action.type) {
@@ -50,7 +49,7 @@ export const AdminProvider = ({ children }) => {
 
   const fetchAnalytics = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/admin/analytics`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/analytics`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -67,7 +66,7 @@ export const AdminProvider = ({ children }) => {
 
   const fetchAllUsers = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/admin/users`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -84,7 +83,7 @@ export const AdminProvider = ({ children }) => {
 
   const updateUserRole = async (userId, role) => {
     try {
-      const response = await fetch(`${API_BASE}/api/admin/users/${userId}/role`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${userId}/role`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +105,7 @@ export const AdminProvider = ({ children }) => {
 
   const fetchAllListings = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/admin/listings`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/listings`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -121,7 +120,7 @@ export const AdminProvider = ({ children }) => {
 
   const deleteListing = async (listingId) => {
     try {
-      const response = await fetch(`${API_BASE}/api/admin/listings/${listingId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/listings/${listingId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -137,7 +136,7 @@ export const AdminProvider = ({ children }) => {
 
   const verifyListing = async (listingId, verified = true) => {
     try {
-      const response = await fetch(`${API_BASE}/api/admin/listings/${listingId}/verify`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/listings/${listingId}/verify`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
