@@ -11,13 +11,11 @@ A full-stack web application that replicates core Airbnb functionality, allowing
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
 - [Project Structure](#project-structure)
 - [User Roles](#user-roles)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
