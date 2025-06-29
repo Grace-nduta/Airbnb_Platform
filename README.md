@@ -121,7 +121,7 @@ npm install
 
 3. Start the development server:
 ```bash
-npm start
+npm run dev
 ```
 
 The frontend will be available at `http://localhost:5173/`
@@ -230,7 +230,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Grace Kahare - [Your Email]
+Grace Kahare - [ndutak5674@gmail.com]
 
 Project Link: [https://github.com/gracekahare/Fullstackbnb](https://github.com/gracekahare/Fullstackbnb)
 
